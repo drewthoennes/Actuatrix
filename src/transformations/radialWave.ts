@@ -1,16 +1,25 @@
-import { MATRIX_SIDE_LENGTH } from '../constants';
+import memoize from 'memoizee';
+import { MATRIX_CENTER, MATRIX_SIDE_LENGTH, MAX_DISTANCE_FROM_CENTER } from '../constants';
 import { CoordinateCache } from '../CoordinateCache';
 import { Transformation } from '../types';
+import { getDistanceFromCenter, getRadiansFromCartesianPoint } from '../utils';
 
-const MATRIX_CENTER = [Math.ceil(MATRIX_SIDE_LENGTH / 2), Math.ceil(MATRIX_SIDE_LENGTH / 2)];
 const AMPLITUDE = 15;
-const PERIOD = 2;
+const PERIOD = 0.5;
+const SLOWDOWN = 7;
 
-const getDistanceFromCenter = (i: number, j: number) => Math.sqrt(Math.pow(MATRIX_CENTER[0] - i, 2) + Math.pow(MATRIX_CENTER[1] - j, 2));
 const distanceFromCenterCache = new CoordinateCache(MATRIX_SIDE_LENGTH, MATRIX_SIDE_LENGTH, getDistanceFromCenter);
 
-export const radialWaveTransformation: Transformation = ({ coordinate, i, j, t }) => {
-  const [x, y] = coordinate;
+const getAmplitudeModifier = memoize((i: number, j: number) => {
   const distanceFromCenter = distanceFromCenterCache.get(i, j);
-  return [x, y - (AMPLITUDE * Math.sin((t + distanceFromCenter) / PERIOD))];
+  // This function grows quadratically, bound between 1 and 3
+  return 1 + 2 * Math.pow(distanceFromCenter / MAX_DISTANCE_FROM_CENTER, 2);
+}, { primitive: true });
+
+export const radialWaveTransform: Transformation = ({ coordinate, i, j, t }) => {
+  const [x, y] = coordinate;
+  const radians = getRadiansFromCartesianPoint(MATRIX_CENTER, [i, j]);
+  const amplitudeModifier = getAmplitudeModifier(i, j);
+
+  return [x, y - (amplitudeModifier * AMPLITUDE * Math.sin((t / SLOWDOWN + radians) / PERIOD))];
 };
