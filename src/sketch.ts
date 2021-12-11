@@ -1,5 +1,5 @@
 import p5 from 'p5';
-import { circularWaveTransform, linearWaveTransformation, radialWaveTransform } from './transformations';
+import { circularWaveTransform, linearWaveTransformation, radialWaveTransform, swirlTransform } from './transformations';
 import { CANVAS_SIZE, PRISM_SIDE_LENGTH, PRISM_HEIGHT, MATRIX_SIDE_LENGTH } from './constants';
 import { Coordinate } from './types';
 import { CoordinateCache } from './CoordinateCache';
@@ -36,7 +36,7 @@ const sketch = (p: any) => {
     for (let i = 0; i < MATRIX_SIDE_LENGTH; i++) {
       for (let j = 0; j < MATRIX_SIDE_LENGTH; j++) {
         const [x, y] = coordinates.get(i, j);
-        const yOffset = radialWaveTransform({ i, j, t });
+        const yOffset = swirlTransform({ i, j, t });
         p.drawPrism([x, y - yOffset]);
       }
     }
