@@ -35,9 +35,9 @@ const sketch = (p: any) => {
   
     for (let i = 0; i < MATRIX_SIDE_LENGTH; i++) {
       for (let j = 0; j < MATRIX_SIDE_LENGTH; j++) {
-        const coordinate = coordinates.get(i, j);
-        const transformedCoordinate = radialWaveTransform({ coordinate, i, j, t });
-        p.drawPrism(transformedCoordinate);
+        const [x, y] = coordinates.get(i, j);
+        const yOffset = radialWaveTransform({ i, j, t });
+        p.drawPrism([x, y - yOffset]);
       }
     }
   
