@@ -1,5 +1,5 @@
 import p5 from 'p5';
-import { radialWaveTransformation } from './radialWave';
+import { linearWaveTransformation, radialWaveTransformation } from './transformations';
 import { CANVAS_SIZE, PRISM_SIDE_LENGTH, PRISM_HEIGHT, MATRIX_SIDE_LENGTH } from './constants';
 import { Coordinate } from './types';
 
