@@ -2,6 +2,7 @@ import p5 from 'p5';
 import { linearWaveTransformation, radialWaveTransformation } from './transformations';
 import { CANVAS_SIZE, PRISM_SIDE_LENGTH, PRISM_HEIGHT, MATRIX_SIDE_LENGTH } from './constants';
 import { Coordinate } from './types';
+import { CoordinateCache } from './CoordinateCache';
 
 const CONTAINER = document.getElementById("sketch");
 
@@ -11,7 +12,7 @@ const TOPMOST_POINT = [
 ];
 
 let t = 0;
-const coordinates: { [row: number]: { [col: number]: Coordinate }} = {};
+const coordinates = new CoordinateCache<Coordinate>(MATRIX_SIDE_LENGTH, MATRIX_SIDE_LENGTH, undefined);
 
 const sketch = (p: any) => {
   p.setup = () => {
@@ -23,12 +24,8 @@ const sketch = (p: any) => {
           TOPMOST_POINT[0] + (i - j) * ((PRISM_SIDE_LENGTH / 2) * Math.sqrt(3)),
           TOPMOST_POINT[1] + (i + j) * (PRISM_SIDE_LENGTH / 2),
         ];
-        
-        if (coordinates[i] == null) {
-          coordinates[i] = [];
-        }
-        
-        coordinates[i][j] = coordinate;
+
+        coordinates.set(i, j, coordinate);
       }
     }
   };
@@ -38,7 +35,7 @@ const sketch = (p: any) => {
   
     for (let i = 0; i < MATRIX_SIDE_LENGTH; i++) {
       for (let j = 0; j < MATRIX_SIDE_LENGTH; j++) {
-        const coordinate = coordinates[i][j];
+        const coordinate = coordinates.get(i, j);
         const transformedCoordinate = radialWaveTransformation({ coordinate, i, j, t });
         p.drawPrism(transformedCoordinate);
       }
