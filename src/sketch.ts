@@ -1,9 +1,10 @@
 import p5 from 'p5';
 import { circularWaveTransform, linearWaveTransformation, radialWaveTransform, swirlTransform } from './transformations';
 import { CANVAS_SIZE, PRISM_SIDE_LENGTH, PRISM_HEIGHT, MATRIX_SIDE_LENGTH } from './constants';
-import { Coordinate, RGB } from './types';
+import { Coordinate } from './types';
 import { CoordinateCache } from './CoordinateCache';
-import { fillWithOffset } from './colors/fillWithOffset';
+import { RGB } from './rgb';
+import { withLavaFill } from './colors/withLavaFill';
 
 const CONTAINER = document.getElementById("sketch");
 
@@ -39,7 +40,7 @@ const sketch = (p: any) => {
         const [x, y] = coordinates.get(i, j);
 
         const yOffset = swirlTransform({ i, j, t });
-        const fill = fillWithOffset(yOffset, 0, 50);
+        const fill = withLavaFill(yOffset, t, 0, 50);
 
         p.drawPrism([x, y - yOffset], fill);
       }
