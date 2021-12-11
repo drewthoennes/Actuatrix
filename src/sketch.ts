@@ -1,8 +1,9 @@
 import p5 from 'p5';
 import { circularWaveTransform, linearWaveTransformation, radialWaveTransform, swirlTransform } from './transformations';
 import { CANVAS_SIZE, PRISM_SIDE_LENGTH, PRISM_HEIGHT, MATRIX_SIDE_LENGTH } from './constants';
-import { Coordinate } from './types';
+import { Coordinate, RGB } from './types';
 import { CoordinateCache } from './CoordinateCache';
+import { fillWithOffset } from './colors/fillWithOffset';
 
 const CONTAINER = document.getElementById("sketch");
 
@@ -36,16 +37,23 @@ const sketch = (p: any) => {
     for (let i = 0; i < MATRIX_SIDE_LENGTH; i++) {
       for (let j = 0; j < MATRIX_SIDE_LENGTH; j++) {
         const [x, y] = coordinates.get(i, j);
+
         const yOffset = swirlTransform({ i, j, t });
-        p.drawPrism([x, y - yOffset]);
+        const fill = fillWithOffset(yOffset, 0, 50);
+
+        p.drawPrism([x, y - yOffset], fill);
       }
     }
   
     t += 0.15;
   };
 
-  p.drawPrism = ([x, y]: Coordinate) => {
+  p.drawPrism = ([x, y]: Coordinate, fill?: RGB) => {
     p.beginShape();
+
+    if (fill != null) {
+      p.fill(fill);
+    }
 
     p.vertex(x, y);
     p.vertex(x + (PRISM_SIDE_LENGTH / 2) * Math.sqrt(3), y + PRISM_SIDE_LENGTH / 2);
