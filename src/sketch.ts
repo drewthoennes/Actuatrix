@@ -46,31 +46,35 @@ const sketch = (p: any) => {
 
   p.drawPrism = ([x, y]: Coordinate) => {
     p.beginShape();
+
     p.vertex(x, y);
     p.vertex(x + (PRISM_SIDE_LENGTH / 2) * Math.sqrt(3), y + PRISM_SIDE_LENGTH / 2);
-    p.vertex(x, y + PRISM_SIDE_LENGTH);
-    p.vertex(x - (PRISM_SIDE_LENGTH / 2) * Math.sqrt(3), y + PRISM_SIDE_LENGTH / 2);
-    p.endShape(p.CLOSE);
-  
-    p.beginShape();
-    p.vertex(x + (PRISM_SIDE_LENGTH / 2) * Math.sqrt(3), y + PRISM_SIDE_LENGTH / 2);
-    p.vertex(
-      x + (PRISM_SIDE_LENGTH / 2) * Math.sqrt(3),
-      y + PRISM_SIDE_LENGTH / 2 + PRISM_HEIGHT
-    );
+    p.vertex(x + (PRISM_SIDE_LENGTH / 2) * Math.sqrt(3), y + PRISM_SIDE_LENGTH / 2 + PRISM_HEIGHT);
     p.vertex(x, y + PRISM_SIDE_LENGTH + PRISM_HEIGHT);
-    p.vertex(x, y + PRISM_SIDE_LENGTH);
-    p.endShape(p.CLOSE);
-  
-    p.beginShape();
+    p.vertex(x - (PRISM_SIDE_LENGTH / 2) * Math.sqrt(3), y + PRISM_SIDE_LENGTH / 2 + PRISM_HEIGHT);
     p.vertex(x - (PRISM_SIDE_LENGTH / 2) * Math.sqrt(3), y + PRISM_SIDE_LENGTH / 2);
-    p.vertex(
-      x - (PRISM_SIDE_LENGTH / 2) * Math.sqrt(3),
-      y + PRISM_SIDE_LENGTH / 2 + PRISM_HEIGHT
-    );
-    p.vertex(x, y + PRISM_SIDE_LENGTH + PRISM_HEIGHT);
-    p.vertex(x, y + PRISM_SIDE_LENGTH);
+    
     p.endShape(p.CLOSE);
+
+    p.line(x, y + PRISM_SIDE_LENGTH, x + (PRISM_SIDE_LENGTH / 2) * Math.sqrt(3), y + PRISM_SIDE_LENGTH / 2)
+    p.line(x, y + PRISM_SIDE_LENGTH, x - (PRISM_SIDE_LENGTH / 2) * Math.sqrt(3), y + PRISM_SIDE_LENGTH / 2)
+    p.line(x, y + PRISM_SIDE_LENGTH, x, y + PRISM_SIDE_LENGTH / 2 + PRISM_HEIGHT)
+  };
+
+  p.drawIrregularPrism = ([x, y]: Coordinate) => {
+    p.beginShape();
+
+    p.vertex(x, y);
+    p.vertex(x + (PRISM_SIDE_LENGTH / 2) * Math.sqrt(3), y + PRISM_SIDE_LENGTH / 2 + PRISM_HEIGHT);
+    p.vertex(x, y + PRISM_SIDE_LENGTH + PRISM_HEIGHT);
+    p.vertex(x - (PRISM_SIDE_LENGTH / 2) * Math.sqrt(3), y + PRISM_SIDE_LENGTH / 2 + PRISM_HEIGHT);
+    p.vertex(x - (PRISM_SIDE_LENGTH / 2) * Math.sqrt(3), y + PRISM_SIDE_LENGTH / 2);
+    
+    p.endShape(p.CLOSE);
+
+    p.line(x, y + PRISM_SIDE_LENGTH, x + (PRISM_SIDE_LENGTH / 2) * Math.sqrt(3), y + PRISM_SIDE_LENGTH / 2 + PRISM_HEIGHT)
+    p.line(x, y + PRISM_SIDE_LENGTH, x - (PRISM_SIDE_LENGTH / 2) * Math.sqrt(3), y + PRISM_SIDE_LENGTH / 2)
+    p.line(x, y + PRISM_SIDE_LENGTH, x - (PRISM_SIDE_LENGTH / 2) * Math.sqrt(3), y + PRISM_SIDE_LENGTH / 2 + PRISM_HEIGHT)
   };
 };
 
