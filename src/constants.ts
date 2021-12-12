@@ -1,5 +1,9 @@
 import { Coordinate } from "./types";
 
+const SEED_POWER = 6;
+export const SEED = Math.round(Math.random() * Math.pow(10, SEED_POWER));
+export const SEED_AS_DECIMAL = SEED / Math.pow(10, SEED_POWER);
+
 export const PRISM_SIDE_LENGTH = 30;
 export const PRISM_HEIGHT = 180;
 export const MATRIX_SIDE_LENGTH = 15;

@@ -1,7 +1,7 @@
 import { MATRIX_CENTER, MATRIX_SIDE_LENGTH, MAX_DISTANCE_FROM_CENTER } from '../constants';
 import { CoordinateCache } from '../CoordinateCache';
 import { Transformation } from '../types';
-import { getDistanceFromCenter, getRadiansFromCartesianPoint } from '../utils';
+import { getDistanceFromCenter, getRadiansFromCartesianPoint } from '../utils/utils';
 
 const AMPLITUDE = 20;
 const PERIOD = 0.9;

@@ -1,6 +1,6 @@
 import memoize from 'memoizee';
-import { MATRIX_CENTER } from "./constants";
-import { Coordinate } from "./types";
+import { MATRIX_CENTER } from "../constants";
+import { Coordinate } from "../types";
 
 export function getDistanceFromCenter(i: number, j: number) {
   return Math.sqrt(Math.pow(MATRIX_CENTER[0] - i, 2) + Math.pow(MATRIX_CENTER[1] - j, 2));

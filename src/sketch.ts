@@ -1,14 +1,15 @@
 import p5 from 'p5';
 import { circularWaveTransform, linearWaveTransformation, radialWaveTransform, swirlTransform } from './transformations';
-import { PRISM_SIDE_LENGTH, PRISM_HEIGHT, MATRIX_SIDE_LENGTH } from './constants';
+import { PRISM_SIDE_LENGTH, PRISM_HEIGHT, MATRIX_SIDE_LENGTH, SEED } from './constants';
 import { Coordinate } from './types';
 import { CoordinateCache } from './CoordinateCache';
 import { RGB } from './rgb';
 import { withOceanFill } from './colors/withOceanFill';
+import { generateCliff } from './utils/generateCliffs';
 
 const CONTAINER = document.getElementById("sketch");
 
-let t = 0;
+let t = SEED;
 const coordinates = new CoordinateCache<Coordinate>(MATRIX_SIDE_LENGTH, MATRIX_SIDE_LENGTH, undefined);
 
 const sketch = (p: any) => {

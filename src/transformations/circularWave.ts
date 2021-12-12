@@ -1,7 +1,7 @@
 import { MATRIX_SIDE_LENGTH } from '../constants';
 import { CoordinateCache } from '../CoordinateCache';
 import { Transformation } from '../types';
-import { getDistanceFromCenter } from '../utils';
+import { getDistanceFromCenter } from '../utils/utils';
 
 const AMPLITUDE = 15;
 const PERIOD = 2;
