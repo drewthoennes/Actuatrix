@@ -1,8 +1,6 @@
 import { SEED_AS_DECIMAL } from '../constants';
 import { Coordinate, Direction } from '../types';
 
-console.log(SEED_AS_DECIMAL);
-
 const DIRECTIONS: readonly Direction[] = ['UP', 'DOWN', 'LEFT', 'RIGHT'];
 
 function generateMatrix<T>(rows: number, cols: number, getDefaultValue: (i: number, j: number) => T): readonly T[][] {

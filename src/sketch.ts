@@ -68,7 +68,7 @@ const sketch = (p: any) => {
 
     p.line(x, y + PRISM_SIDE_LENGTH, x + (PRISM_SIDE_LENGTH / 2) * Math.sqrt(3), y + PRISM_SIDE_LENGTH / 2)
     p.line(x, y + PRISM_SIDE_LENGTH, x - (PRISM_SIDE_LENGTH / 2) * Math.sqrt(3), y + PRISM_SIDE_LENGTH / 2)
-    p.line(x, y + PRISM_SIDE_LENGTH, x, y + PRISM_SIDE_LENGTH / 2 + PRISM_HEIGHT)
+    p.line(x, y + PRISM_SIDE_LENGTH, x, y + PRISM_SIDE_LENGTH + PRISM_HEIGHT)
   };
 
   p.drawIrregularPrism = ([x, y]: Coordinate, fill?: RGB) => {
