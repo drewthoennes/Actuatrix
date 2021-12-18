@@ -1,5 +1,5 @@
 import { clamp } from "lodash-es";
-import { RGB, RGBPair } from "../rgb";
+import { Color, ColorPair, RGB, RGBPair } from "../Color";
 
 const DURATION = 60;
 const COLORS: readonly [RGB, RGB][] = [
@@ -9,7 +9,7 @@ const COLORS: readonly [RGB, RGB][] = [
   [[43, 43, 43], [227, 227, 227]],
 ];
 
-export function withLavaFill(offset: number, t: number, min: number, max: number): RGB {
+export function withLavaFill(offset: number, t: number, min: number, max: number): Color {
   const indexOfCurrentPair = Math.floor(t / DURATION) % COLORS.length;
   const indexOfNextPair = (indexOfCurrentPair + 1) % COLORS.length;
   const currentColorPair = COLORS[indexOfCurrentPair];
@@ -17,14 +17,14 @@ export function withLavaFill(offset: number, t: number, min: number, max: number
 
   const completedDuration = (t % DURATION) / DURATION;
 
-  const currentToNextDiff: RGBPair = [
-    RGB.average(currentColorPair[0], nextColorPair[0], completedDuration),
-    RGB.average(currentColorPair[1], nextColorPair[1], completedDuration)
+  const currentToNextDiff: ColorPair = [
+    Color.average(currentColorPair[0], nextColorPair[0], completedDuration),
+    Color.average(currentColorPair[1], nextColorPair[1], completedDuration)
   ];
 
   const clampedOffset = clamp(offset, min, max);
   const range = max - min;
   const relativeOffset = (clampedOffset - min) / range;
 
-  return RGB.average(...currentToNextDiff, relativeOffset);
+  return Color.average(currentToNextDiff[0], currentToNextDiff[1], relativeOffset);
 }

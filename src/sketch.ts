@@ -2,10 +2,12 @@ import p5 from 'p5';
 import { circularWaveTransform, linearWaveTransformation, radialWaveTransform, swirlTransform } from './transformations';
 import { PRISM_SIDE_LENGTH, PRISM_HEIGHT, MATRIX_SIDE_LENGTH, SEED } from './constants';
 import { Coordinate } from './types';
+import { Color, RGB } from './Color';
 import { CoordinateCache } from './CoordinateCache';
-import { RGB } from './rgb';
 import { withOceanFill } from './colors/withOceanFill';
 import { generateCliff } from './utils/generateCliffs';
+import { withLavaFill } from './colors/withLavaFill';
+import { withCyclicTransparency } from './colors/withCyclicTransparency';
 
 const CONTAINER = document.getElementById("sketch");
 
@@ -36,12 +38,17 @@ const sketch = (p: any) => {
   p.draw = () => {
     p.background(16);
 
+    // If the fill isn't dependent on the positioning off cells, run it outside the for loops
+    const fill = withCyclicTransparency(t);
+
     for (let i = 0; i < MATRIX_SIDE_LENGTH; i++) {
       for (let j = 0; j < MATRIX_SIDE_LENGTH; j++) {
         const [x, y] = coordinates.get(i, j);
 
-        const yOffset = swirlTransform({ i, j, t });
-        const fill = withOceanFill(yOffset, 0, 50);
+        // const yOffset = swirlTransform({ i, j, t });
+        const yOffset = circularWaveTransform({ i, j, t });
+
+        // const fill = withLavaFill(yOffset, t, 0, 50);
 
         p.drawPrism([x, y - yOffset], fill);
       }
@@ -50,7 +57,7 @@ const sketch = (p: any) => {
     t += 0.15;
   };
 
-  p.drawPrism = ([x, y]: Coordinate, fill?: RGB) => {
+  p.drawPrism = ([x, y]: Coordinate, fill?: Color) => {
     p.beginShape();
 
     if (fill != null) {
@@ -71,7 +78,7 @@ const sketch = (p: any) => {
     p.line(x, y + PRISM_SIDE_LENGTH, x, y + PRISM_SIDE_LENGTH + PRISM_HEIGHT)
   };
 
-  p.drawIrregularPrism = ([x, y]: Coordinate, fill?: RGB) => {
+  p.drawIrregularPrism = ([x, y]: Coordinate, fill?: Color) => {
     p.beginShape();
 
     if (fill != null) {

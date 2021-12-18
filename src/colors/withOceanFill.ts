@@ -1,4 +1,4 @@
-import { RGB } from "../rgb";
+import { RGB } from "../Color";
 import { fillWithOffset } from "./fillWithOffset";
 
 const bottom: RGB = [39, 69, 145];

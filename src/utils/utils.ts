@@ -2,6 +2,16 @@ import memoize from 'memoizee';
 import { MATRIX_CENTER } from "../constants";
 import { Coordinate } from "../types";
 
+// This is based on the mulberry32 random number generator (https://stackoverflow.com/a/47593316)
+export function seededRandom(seed?: number) {
+  return function() {
+    let t = seed += 0x6D2B79F5;
+    t = Math.imul(t ^ t >>> 15, t | 1);
+    t ^= t + Math.imul(t ^ t >>> 7, t | 61);
+    return ((t ^ t >>> 14) >>> 0) / 4294967296;
+  }
+}
+
 export function getDistanceFromCenter(i: number, j: number) {
   return Math.sqrt(Math.pow(MATRIX_CENTER[0] - i, 2) + Math.pow(MATRIX_CENTER[1] - j, 2));
 }
