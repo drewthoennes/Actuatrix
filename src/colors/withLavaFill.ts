@@ -1,5 +1,6 @@
 import { clamp } from "lodash-es";
 import { Color, ColorPair, RGB, RGBPair } from "../Color";
+import { Fill } from "../types";
 
 const DURATION = 60;
 const COLORS: readonly [RGB, RGB][] = [
@@ -9,7 +10,7 @@ const COLORS: readonly [RGB, RGB][] = [
   [[43, 43, 43], [227, 227, 227]],
 ];
 
-export function withLavaFill(offset: number, t: number, min: number, max: number): Color {
+export const withLavaFill: Fill = ({ offset, t, min, max }) => {
   const indexOfCurrentPair = Math.floor(t / DURATION) % COLORS.length;
   const indexOfNextPair = (indexOfCurrentPair + 1) % COLORS.length;
   const currentColorPair = COLORS[indexOfCurrentPair];
@@ -27,4 +28,4 @@ export function withLavaFill(offset: number, t: number, min: number, max: number
   const relativeOffset = (clampedOffset - min) / range;
 
   return Color.average(currentToNextDiff[0], currentToNextDiff[1], relativeOffset);
-}
+};

@@ -7,7 +7,8 @@ This repository aims to not only animate a matrix of linear actuators, but to ra
 - Size of matrix
 - Connectedness between any two matrix cells
 - Animation
-  - Speed of animation
+  - Speed
+  - Direction
   - Noise
 - Color
   - Solid colors

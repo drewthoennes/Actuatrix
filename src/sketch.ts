@@ -1,13 +1,10 @@
 import p5 from 'p5';
-import { circularWaveTransform, linearWaveTransformation, radialWaveTransform, swirlTransform } from './transformations';
 import { PRISM_SIDE_LENGTH, PRISM_HEIGHT, MATRIX_SIDE_LENGTH, SEED } from './constants';
 import { Coordinate } from './types';
-import { Color, RGB } from './Color';
+import { Color } from './Color';
 import { CoordinateCache } from './CoordinateCache';
-import { withOceanFill } from './colors/withOceanFill';
-import { generateCliff } from './utils/generateCliffs';
-import { withLavaFill } from './colors/withLavaFill';
-import { withCyclicTransparency } from './colors/withCyclicTransparency';
+import { withRandomFill } from './colors/withRandomFill';
+import { withRandomTransform } from './transformations/withRandomTransform';
 
 const CONTAINER = document.getElementById("sketch");
 
@@ -37,20 +34,16 @@ const sketch = (p: any) => {
 
   p.draw = () => {
     p.background(16);
-
-    // If the fill isn't dependent on the positioning off cells, run it outside the for loops
-    const fill = withCyclicTransparency(t);
+    p.drawSeed();
 
     for (let i = 0; i < MATRIX_SIDE_LENGTH; i++) {
       for (let j = 0; j < MATRIX_SIDE_LENGTH; j++) {
         const [x, y] = coordinates.get(i, j);
 
-        // const yOffset = swirlTransform({ i, j, t });
-        const yOffset = circularWaveTransform({ i, j, t });
+        const offset = withRandomTransform({ i, j, t });
+        const fill = withRandomFill({ offset, t, min: 0, max: 50 });
 
-        // const fill = withLavaFill(yOffset, t, 0, 50);
-
-        p.drawPrism([x, y - yOffset], fill);
+        p.drawPrism([x, y - offset], fill);
       }
     }
   
@@ -96,6 +89,12 @@ const sketch = (p: any) => {
     p.line(x, y + PRISM_SIDE_LENGTH, x + (PRISM_SIDE_LENGTH / 2) * Math.sqrt(3), y + PRISM_SIDE_LENGTH / 2 + PRISM_HEIGHT)
     p.line(x, y + PRISM_SIDE_LENGTH, x - (PRISM_SIDE_LENGTH / 2) * Math.sqrt(3), y + PRISM_SIDE_LENGTH / 2)
     p.line(x, y + PRISM_SIDE_LENGTH, x - (PRISM_SIDE_LENGTH / 2) * Math.sqrt(3), y + PRISM_SIDE_LENGTH / 2 + PRISM_HEIGHT)
+  };
+
+  p.drawSeed = () => {
+    p.textSize(24);
+    p.fill(120);
+    p.text(SEED, 10, 30);
   };
 
   p.windowResized = () => {

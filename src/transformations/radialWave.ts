@@ -1,5 +1,5 @@
 import memoize from 'memoizee';
-import { MATRIX_CENTER, MATRIX_SIDE_LENGTH, MAX_DISTANCE_FROM_CENTER } from '../constants';
+import { MATRIX_CENTER, MATRIX_SIDE_LENGTH, MAX_DISTANCE_FROM_CENTER, SEED_AS_BOOLEAN } from '../constants';
 import { CoordinateCache } from '../CoordinateCache';
 import { Transformation } from '../types';
 import { getDistanceFromCenter, getRadiansFromCartesianPoint } from '../utils/utils';
@@ -7,6 +7,7 @@ import { getDistanceFromCenter, getRadiansFromCartesianPoint } from '../utils/ut
 const AMPLITUDE = 15;
 const PERIOD = 0.5;
 const SLOWDOWN = 7;
+const DIRECTION = SEED_AS_BOOLEAN ? -1 : 1;
 
 const distanceFromCenterCache = new CoordinateCache(MATRIX_SIDE_LENGTH, MATRIX_SIDE_LENGTH, getDistanceFromCenter);
 
@@ -20,5 +21,5 @@ export const radialWaveTransform: Transformation = ({ i, j, t }) => {
   const radians = getRadiansFromCartesianPoint(MATRIX_CENTER, [i, j]);
   const amplitudeModifier = getAmplitudeModifier(i, j);
 
-  return amplitudeModifier * AMPLITUDE * Math.sin((t / SLOWDOWN + radians) / PERIOD);
+  return amplitudeModifier * AMPLITUDE * Math.sin((DIRECTION * t / SLOWDOWN + radians) / PERIOD);
 };
