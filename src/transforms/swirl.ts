@@ -1,5 +1,6 @@
-import { MATRIX_CENTER, MATRIX_SIDE_LENGTH, MAX_DISTANCE_FROM_CENTER, SEED_DIRECTION, SEED_TRANSFORM_AMPLITUDE, SEED_TRANSFORM_SPEED } from '../constants';
+import { MATRIX_CENTER, MATRIX_SIDE_LENGTH, MAX_DISTANCE_FROM_CENTER } from '../constants';
 import { CoordinateCache } from '../CoordinateCache';
+import { SEED_DIRECTION, SEED_TRANSFORM_AMPLITUDE, SEED_TRANSFORM_SPEED } from "../traits";
 import { Transform } from '../types';
 import { getDistanceFromCenter, getRadiansFromCartesianPoint, withSeededRange } from '../utils/utils';
 

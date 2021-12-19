@@ -1,4 +1,4 @@
-import { SEED_DIRECTION, SEED_TRANSFORM_AMPLITUDE, SEED_TRANSFORM_SPEED } from '../constants';
+import { SEED_DIRECTION, SEED_TRANSFORM_AMPLITUDE, SEED_TRANSFORM_SPEED } from "../traits";
 import { Transform } from '../types';
 import { withSeededRange } from '../utils/utils';
 

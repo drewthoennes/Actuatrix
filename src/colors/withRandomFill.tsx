@@ -1,4 +1,4 @@
-import { SEED_FILL } from "../constants";
+import { SEED_FILL } from "../traits";
 import { withCyclicTransparency } from "./withCyclicTransparency";
 import { withLavaFill } from "./withLavaFill";
 import { withOceanFill } from "./withOceanFill";

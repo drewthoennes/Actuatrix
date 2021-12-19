@@ -1,14 +1,15 @@
 import p5 from 'p5';
-import { PRISM_SIDE_LENGTH, PRISM_HEIGHT, MATRIX_SIDE_LENGTH, SEED } from './constants';
-import { Coordinate } from './types';
 import { Color } from './Color';
-import { CoordinateCache } from './CoordinateCache';
 import { withRandomFill } from './colors/withRandomFill';
+import { PRISM_SIDE_LENGTH, PRISM_HEIGHT, MATRIX_SIDE_LENGTH } from './constants';
+import { CoordinateCache } from './CoordinateCache';
+import { SEED, SEED_START_TIME } from "./traits";
 import { withRandomTransform } from './transforms/withRandomTransform';
+import { Coordinate } from './types';
 
 const CONTAINER = document.getElementById("sketch");
 
-let t = SEED;
+let t = SEED_START_TIME;
 const coordinates = new CoordinateCache<Coordinate>(MATRIX_SIDE_LENGTH, MATRIX_SIDE_LENGTH, undefined);
 
 const sketch = (p: any) => {

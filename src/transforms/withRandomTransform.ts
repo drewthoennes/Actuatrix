@@ -1,5 +1,5 @@
 import { circularWaveTransform, linearWaveTransform, radialWaveTransform, swirlTransform } from ".";
-import { SEED_TRANSFORM } from "../constants";
+import { SEED_TRANSFORM } from "../traits";
 
 // TODO: Weight these to simulate rarity
 const TRANSFORMS = [

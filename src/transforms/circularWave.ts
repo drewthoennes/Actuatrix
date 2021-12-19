@@ -1,5 +1,6 @@
-import { MATRIX_SIDE_LENGTH, SEED_DIRECTION, SEED_TRANSFORM_AMPLITUDE, SEED_TRANSFORM_SPEED } from '../constants';
+import { MATRIX_SIDE_LENGTH } from '../constants';
 import { CoordinateCache } from '../CoordinateCache';
+import { SEED_DIRECTION, SEED_TRANSFORM_AMPLITUDE, SEED_TRANSFORM_SPEED } from "../traits";
 import { Transform } from '../types';
 import { getDistanceFromCenter, withSeededRange } from '../utils/utils';
 

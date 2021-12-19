@@ -1,4 +1,4 @@
-import { SEED_AS_DECIMAL } from '../constants';
+import { SEED_AS_DECIMAL } from "../traits";
 import { Coordinate, Direction } from '../types';
 
 const DIRECTIONS: readonly Direction[] = ['UP', 'DOWN', 'LEFT', 'RIGHT'];
