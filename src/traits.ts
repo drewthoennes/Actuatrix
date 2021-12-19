@@ -7,9 +7,11 @@ const random = seededRandom(SEED);
 
 export const SEED_START_TIME = Math.floor(100 * random());
 export const SEED_MATRIX_LENGTH = random();
+
 export const SEED_TRANSFORM = random();
 export const SEED_TRANSFORM_SPEED = random();
 export const SEED_TRANSFORM_AMPLITUDE = random();
+export const SEED_TRANSFORM_DIRECTION = random() >= 0.5;
+
 export const SEED_FILL = random();
 export const SEED_FILL_TRANSPARENT = random() > 0.9;
-export const SEED_DIRECTION = random() > 0.5;
