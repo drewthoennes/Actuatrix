@@ -1,4 +1,4 @@
-import { RGB, RGBA } from "../Color";
+import { RGB } from "../Color";
 import { Fill } from "../types";
 
 const BASE_COLOR: RGB = [255, 255, 255];

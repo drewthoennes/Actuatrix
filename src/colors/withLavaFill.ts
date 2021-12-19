@@ -1,5 +1,5 @@
 import { clamp } from "lodash-es";
-import { Color, ColorPair, RGB, RGBPair } from "../Color";
+import { Color, ColorPair, RGB } from "../Color";
 import { Fill } from "../types";
 
 const DURATION = 60;
