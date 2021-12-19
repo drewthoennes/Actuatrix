@@ -1,15 +1,22 @@
 import { circularWaveTransform, linearWaveTransform, radialWaveTransform, swirlTransform } from ".";
 import { SEED_TRANSFORM } from "../traits";
+import { randomDistribution } from "../utils/random";
 import { revolvingSourceCircularWaveTransform } from "./revolvingSourceCircularWave";
 
-// TODO: Weight these to simulate rarity
-const TRANSFORMS = [
+const TRANSFORMS = {
   circularWaveTransform,
   linearWaveTransform,
   radialWaveTransform,
   revolvingSourceCircularWaveTransform,
   swirlTransform,
-];
-const TRANSFORM = TRANSFORMS[Math.floor(TRANSFORMS.length * SEED_TRANSFORM)];
+} as const;
 
-export const withRandomTransform = TRANSFORM;
+const WEIGHTS: Record<keyof typeof TRANSFORMS, number> = {
+  circularWaveTransform: 5,
+  linearWaveTransform: 3,
+  radialWaveTransform: 2,
+  revolvingSourceCircularWaveTransform: 1,
+  swirlTransform: 2,
+} as const;
+
+export const withRandomTransform = TRANSFORMS[randomDistribution(WEIGHTS, SEED_TRANSFORM)];

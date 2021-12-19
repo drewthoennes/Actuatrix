@@ -22,7 +22,7 @@ export function seededRandom(seed?: number) {
  *
  * It should produce first 50% of the time, second 25%, and third 25%.
  */
-export function randomDistribution(distribution: Record<string, number>, seed: number) {
+export function randomDistribution<D extends Record<string, number>>(distribution: D, seed: number): keyof D {
   const keys = Object.keys(distribution);
   const total = sum(Object.values(distribution));
   const probabilities = mapValues(distribution, (probability) => probability / total);
