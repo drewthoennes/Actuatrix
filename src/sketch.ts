@@ -1,8 +1,8 @@
 import p5 from 'p5';
 import { Color } from './Color';
-import { withRandomFill } from './colors/withRandomFill';
 import { PRISM_SIDE_LENGTH, PRISM_HEIGHT, MATRIX_SIDE_LENGTH } from './constants';
 import { CoordinateCache } from './CoordinateCache';
+import { withRandomFill } from './fills/withRandomFill';
 import { SEED, SEED_START_TIME } from "./traits";
 import { withRandomTransform } from './transforms/withRandomTransform';
 import { Coordinate } from './types';
