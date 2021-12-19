@@ -4,7 +4,7 @@ import { Coordinate } from './types';
 import { Color } from './Color';
 import { CoordinateCache } from './CoordinateCache';
 import { withRandomFill } from './colors/withRandomFill';
-import { withRandomTransform } from './transformations/withRandomTransform';
+import { withRandomTransform } from './transforms/withRandomTransform';
 
 const CONTAINER = document.getElementById("sketch");
 
