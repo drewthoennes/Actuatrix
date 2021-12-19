@@ -1,6 +1,5 @@
 import p5 from 'p5';
 import { Color } from './Color';
-import { withRandomCyclicFill } from './colors/withRandomCyclicFill';
 import { withRandomFill } from './colors/withRandomFill';
 import { PRISM_SIDE_LENGTH, PRISM_HEIGHT, MATRIX_SIDE_LENGTH } from './constants';
 import { CoordinateCache } from './CoordinateCache';
