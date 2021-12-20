@@ -2,10 +2,12 @@ import { circularWaveTransform, linearWaveTransform, radialWaveTransform, swirlT
 import { SEED_TRANSFORM } from "../traits";
 import { randomDistribution } from "../utils/random";
 import { arrowTransform } from "./arrow";
+import { axialWaveTransform } from "./axialWave";
 import { revolvingSourceCircularWaveTransform } from "./revolvingSourceCircularWave";
 
 const TRANSFORMS = {
   arrowTransform,
+  axialWaveTransform,
   circularWaveTransform,
   linearWaveTransform,
   radialWaveTransform,
@@ -15,6 +17,7 @@ const TRANSFORMS = {
 
 const WEIGHTS: Record<keyof typeof TRANSFORMS, number> = {
   arrowTransform: 2,
+  axialWaveTransform: 3,
   circularWaveTransform: 5,
   linearWaveTransform: 3,
   radialWaveTransform: 2,
