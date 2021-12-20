@@ -4,6 +4,7 @@ import { PRISM_SIDE_LENGTH, PRISM_HEIGHT, MATRIX_SIDE_LENGTH } from './constants
 import { CoordinateCache } from './CoordinateCache';
 import { withRandomFill } from './fills/withRandomFill';
 import { SEED, SEED_START_TIME } from "./traits";
+import { arrowTransform } from './transforms/arrow';
 import { withRandomTransform } from './transforms/withRandomTransform';
 import { Coordinate } from './types';
 
@@ -41,7 +42,8 @@ const sketch = (p: any) => {
       for (let j = 0; j < MATRIX_SIDE_LENGTH; j++) {
         const [x, y] = coordinates.get(i, j);
 
-        const offset = withRandomTransform({ i, j, t });
+        // const offset = withRandomTransform({ i, j, t });
+        const offset = arrowTransform({ i, j, t });
         const fill = withRandomFill({ offset, t, min: 0, max: 50 });
 
         p.drawPrism([x, y - offset], fill);

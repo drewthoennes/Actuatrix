@@ -6,6 +6,10 @@ export function getDistanceFromCenter(i: number, j: number) {
   return Math.sqrt(Math.pow(MATRIX_CENTER[0] - i, 2) + Math.pow(MATRIX_CENTER[1] - j, 2));
 }
 
+export function getDistanceFromXAxis(i: number, j: number) {
+  return Math.abs(i - MATRIX_CENTER[0]);
+}
+
 // This takes the top of the matrix to be the second quadrant (135°)
 export const getRadiansFromCartesianPoint = memoize(([centerX, centerY]: Coordinate, [pointX, pointY]: Coordinate): number => {
   if (centerX === pointX && centerY === pointY) {
