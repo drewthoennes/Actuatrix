@@ -7,16 +7,12 @@ import { withRandomCyclicFill } from "./withRandomCyclicFill";
 
 const FILLS = {
   withCyclicTransparency,
-  withLavaFill,
-  withOceanFill,
   withRandomCyclicFill,
 } as const;
 
 const WEIGHTS: Record<keyof typeof FILLS, number> = {
-  withCyclicTransparency: 2,
-  withLavaFill: 1,
-  withOceanFill: 1,
-  withRandomCyclicFill: 4,
+  withCyclicTransparency: 1,
+  withRandomCyclicFill: 9,
 } as const;
 
 

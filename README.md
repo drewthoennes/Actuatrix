@@ -18,3 +18,11 @@ This repository aims to not only animate a matrix of linear actuators, but to ra
   - Transparency
   - Stroke
   - Velocity and acceleration of phases (varying colorMode)
+
+## Interesting Seeds
+
+- 3201981
+- 1407767
+- 8812500
+- 8189688
+- 3693138

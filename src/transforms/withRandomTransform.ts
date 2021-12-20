@@ -18,7 +18,7 @@ const TRANSFORMS = {
 const WEIGHTS: Record<keyof typeof TRANSFORMS, number> = {
   arrowTransform: 2,
   axialWaveTransform: 3,
-  circularWaveTransform: 5,
+  circularWaveTransform: 3,
   linearWaveTransform: 3,
   radialWaveTransform: 2,
   revolvingSourceCircularWaveTransform: 1,
