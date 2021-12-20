@@ -1,3 +1,4 @@
+import { Color } from "../Color";
 import { SEED_FILL, SEED_FILL_TRANSPARENT } from "../traits";
 import { Fill } from "../types";
 import { randomRGBA } from "../utils/random";

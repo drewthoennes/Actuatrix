@@ -36,15 +36,24 @@ const plus: ColorCompareFn<Color> = (left, right) => {
   ];
 };
 
+// Note: this does not necessarily output a valid Color since values can be negative
 const difference: ColorCompareFn<Color> = (left, right) => {
-  return [right[0] - left[0], right[1] - left[1], right[2] - left[2]];
+  if (isRGB(left)) {
+    return [right[0] - left[0], right[1] - left[1], right[2] - left[2]];
+  }
+
+  return [right[0] - left[0], right[1] - left[1], right[2] - left[2], right[3] - left[3]];
 };
 
 const average: ColorCompareFn<Color, [number]> = (left, right, weight?: number) => {
   weight = clamp(weight ?? 0.5, 0, 1);
   const diff = difference(left, right);
 
-  return [left[0] + weight * diff[0], left[1] + weight * diff[1], left[2] + weight * diff[2]];
+  if (isRGB(left)) {
+    return [left[0] + weight * diff[0], left[1] + weight * diff[1], left[2] + weight * diff[2]];
+  }
+
+  return [left[0] + weight * diff[0], left[1] + weight * diff[1], left[2] + weight * diff[2], left[3] + weight * diff[3]];
 };
 
 

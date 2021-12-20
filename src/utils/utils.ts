@@ -7,7 +7,7 @@ export function getDistanceFromCenter(i: number, j: number) {
 }
 
 export function getDistanceFromXAxis(i: number, j: number) {
-  return Math.abs(i - MATRIX_CENTER[0]);
+  return i - MATRIX_CENTER[0];
 }
 
 // This takes the top of the matrix to be the second quadrant (135°)
