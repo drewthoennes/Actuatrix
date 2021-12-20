@@ -26,3 +26,9 @@ This repository aims to not only animate a matrix of linear actuators, but to ra
 - 8812500
 - 8189688
 - 3693138
+
+## Interesting Equations
+
+- \ln x^{ex}
+- \frac{3}{x^{x}}
+- \frac{3}{x^{\ln x}}
