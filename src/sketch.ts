@@ -2,13 +2,13 @@ import p5 from 'p5';
 import { Color } from './Color';
 import { PRISM_SIDE_LENGTH, PRISM_HEIGHT, MATRIX_SIDE_LENGTH } from './constants';
 import { CoordinateCache } from './CoordinateCache';
-import { withRandomCyclicFill } from './fills/withRandomCyclicFill';
 import { withRandomFill } from './fills/withRandomFill';
 import { SEED, SEED_START_TIME } from "./traits";
-import { arrowTransform } from './transforms/arrow';
-import { axialWaveTransform } from './transforms/axialWave';
 import { withRandomTransform } from './transforms/withRandomTransform';
 import { Coordinate } from './types';
+
+const IS_CAPTURING: false = false;
+const CAPTURE_DURATION: number | undefined = undefined;
 
 const CONTAINER = document.getElementById("sketch");
 
@@ -17,6 +17,10 @@ const coordinates = new CoordinateCache<Coordinate>(MATRIX_SIDE_LENGTH, MATRIX_S
 
 const sketch = (p: any) => {
   p.setup = () => {
+    if (IS_CAPTURING) {
+      p.frameRate(1);
+    }
+
     const TOPMOST_POINT = [
       p.windowWidth / 2,
       (p.windowHeight - PRISM_SIDE_LENGTH * MATRIX_SIDE_LENGTH - PRISM_HEIGHT) / 2,
@@ -52,13 +56,22 @@ const sketch = (p: any) => {
     }
   
     t += 0.15;
+
+    if (IS_CAPTURING) {
+      p.save(`${p.frameCount}`.padStart(7, '0'));
+
+      if (CAPTURE_DURATION != null && t - SEED_START_TIME > CAPTURE_DURATION) {
+        p.noLoop();
+        console.log('Finished capture', t);
+      }
+    }
   };
 
-  p.drawPrism = ([x, y]: Coordinate, fill?: Color) => {
+  p.drawPrism = ([x, y]: Coordinate, color?: Color) => {
     p.beginShape();
 
-    if (fill != null) {
-      p.fill(fill);
+    if (color != null) {
+      p.fill(color);
     }
 
     p.vertex(x, y);
@@ -75,11 +88,11 @@ const sketch = (p: any) => {
     p.line(x, y + PRISM_SIDE_LENGTH, x, y + PRISM_SIDE_LENGTH + PRISM_HEIGHT)
   };
 
-  p.drawIrregularPrism = ([x, y]: Coordinate, fill?: Color) => {
+  p.drawIrregularPrism = ([x, y]: Coordinate, color?: Color) => {
     p.beginShape();
 
-    if (fill != null) {
-      p.fill(fill);
+    if (color != null) {
+      p.fill(color);
     }
 
     p.vertex(x, y);
