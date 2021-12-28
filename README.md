@@ -21,10 +21,7 @@ This repository aims to not only animate a matrix of linear actuators, but to ra
 
 ## Interesting Seeds
 
-- 3201981
 - 1407767
-- 8812500
-- 8189688
 - 3693138
 - 9718308
 - 9832837
@@ -33,6 +30,20 @@ This repository aims to not only animate a matrix of linear actuators, but to ra
 - 389752
 - 9070049
 - 3801237
+- 1690572
+- 2948997
+- 4324963
+- 9622887
+- 6552583
+- 953173
+- 2793630
+- 4668944
+- 5055680
+- 4933591
+- 8743474
+- 9086750
+- **5577634**
+- 259864
 
 ## Interesting Equations
 

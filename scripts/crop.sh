@@ -1,4 +1,4 @@
-fileName="3693138.mp4"
+fileName="$1"
 outputFileName="cropped-$fileName"
 
 # The desired dimensions of the output

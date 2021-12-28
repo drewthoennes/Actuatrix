@@ -18,7 +18,7 @@ const coordinates = new CoordinateCache<Coordinate>(MATRIX_SIDE_LENGTH, MATRIX_S
 const sketch = (p: any) => {
   p.setup = () => {
     if (IS_CAPTURING) {
-      p.frameRate(1);
+      p.frameRate(2);
     }
 
     const TOPMOST_POINT = [
