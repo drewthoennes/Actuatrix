@@ -1,3 +1,5 @@
+import { saveAs } from 'file-saver';
+import JSZip from 'jszip';
 import p5 from 'p5';
 import { Color } from './Color';
 import { PRISM_SIDE_LENGTH, PRISM_HEIGHT, MATRIX_SIDE_LENGTH } from './constants';
@@ -8,7 +10,10 @@ import { withRandomTransform } from './transforms/withRandomTransform';
 import { Coordinate } from './types';
 
 const IS_CAPTURING: false = false;
-const CAPTURE_DURATION: number | undefined = undefined;
+const CAPTURE_DURATION: number | undefined = 15;
+const zip = new JSZip();
+const zipName = SEED.toString();
+const zipScreenshotFolder = zip.folder(zipName);
 
 const CONTAINER = document.getElementById("sketch");
 
@@ -58,11 +63,19 @@ const sketch = (p: any) => {
     t += 0.15;
 
     if (IS_CAPTURING) {
-      p.save(`${p.frameCount}`.padStart(7, '0'));
+      const canvas = document.getElementById('defaultCanvas0') as HTMLCanvasElement;
+      canvas.toBlob((blob) => {
+        const fileName = `${p.frameCount}`.padStart(7, '0');
+        zipScreenshotFolder.file(`${fileName}.png`, blob, { base64: true });
+      });
 
       if (CAPTURE_DURATION != null && t - SEED_START_TIME > CAPTURE_DURATION) {
         p.noLoop();
         console.log('Finished capture', t);
+
+        zip.generateAsync({ type: 'blob' }).then((content) => {
+          saveAs(content, `${zipName}.zip`);
+        });
       }
     }
   };
