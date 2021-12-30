@@ -21,9 +21,9 @@ export const getRadiansFromCartesianPoint = memoize(([centerX, centerY]: Coordin
 
   if (relativePointX < 0 && relativePointY >= 0) { // Second quadrant
     return unshiftedAngle + Math.PI;
-  } else if (relativePointX <= 0 && relativePointY < 0) { // Third quadrant
+  } else if (relativePointX < 0 && relativePointY < 0) { // Third quadrant
     return unshiftedAngle + Math.PI;
-  } else if (relativePointX > 0 && relativePointY < 0) { // Fourth quadrant
+  } else if (relativePointX >= 0 && relativePointY < 0) { // Fourth quadrant
     return unshiftedAngle + (2 * Math.PI);
   }
 
